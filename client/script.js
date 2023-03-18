@@ -71,11 +71,11 @@ const handleSubmit = async (e) => {
 
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
-    const messageDiv = document.getElementById(uniqueId)
+    const messageDiv = document.getElementById(uniqueId);
 
     loader(messageDiv)
 
-    const response = await fetch('https://ai-codex-6djt.onrender.com/', {
+    const response = await fetch('http://localhost:5000', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const handleSubmit = async (e) => {
     })
 
     clearInterval(loadInterval)
-    messageDiv.innerHTML = " "
+    messageDiv.innerHTML = "";
 
     if (response.ok) {
         const data = await response.json();
@@ -103,7 +103,7 @@ const handleSubmit = async (e) => {
 
 form.addEventListener('submit', handleSubmit)
 form.addEventListener('keyup', (e) => {
-    if (e.keyCode === 13) {
+    if (e.key === 13) {
         handleSubmit(e)
     }
 })
